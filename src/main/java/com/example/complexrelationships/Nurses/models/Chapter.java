@@ -14,10 +14,9 @@ public class Chapter {
     private String name;
     private String district;
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private Member president;
-    @OneToMany
-    @JoinColumn(name = "id")
+    @OneToMany(mappedBy = "chapter", fetch = FetchType.EAGER)
     private List<Member> members = new ArrayList<>();
 
     public Chapter() {

@@ -1,25 +1,31 @@
 package com.example.complexrelationships.EventManager.models;
 
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
+import java.util.List;
+@Entity
+@Table(name = "conferences")
 public class Conferences extends Events {
-    private Guest speaker;
+    @OneToOne
+    private Guests speaker;
     private int presentationDuration;
 
     public Conferences() {
     }
 
-    public Conferences(String date, String duration, String location, String title, List<Guest> guests, Guest speaker, int presentationDuration) {
+    public Conferences(String date, String duration, String location, String title, List<Guests> guests, Guests speaker, int presentationDuration) {
         super(date, duration, location, title, guests);
         this.speaker = speaker;
         this.presentationDuration = presentationDuration;
     }
 
-    public Guest getSpeaker() {
+    public Guests getSpeaker() {
         return speaker;
     }
 
-    public void setSpeaker(Guest speaker) {
+    public void setSpeaker(Guests speaker) {
         this.speaker = speaker;
     }
 

@@ -1,14 +1,21 @@
 package com.example.complexrelationships.EventManager.models;
 
-public class Guest {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "guests")
+public class Guests {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @Enumerated
     private Status status;
 
-    public Guest() {
+    public Guests() {
     }
 
-    public Guest(String name, Status status) {
+    public Guests(String name, Status status) {
         this.name = name;
         this.status = status;
     }

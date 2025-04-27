@@ -1,21 +1,27 @@
 package com.example.complexrelationships.EventManager.models;
 
-import java.lang.reflect.Member;
+
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
+@Table(name = "events")
 public class Events {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String date;
     private String duration;
     private String location;
     private String title;
-    private List<Guest> guests = new ArrayList<>();
+    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
+    private List<Guests> guests = new ArrayList<>();
 
     public Events() {
     }
 
-    public Events(String date, String duration, String location, String title, List<Guest> guests) {
+    public Events(String date, String duration, String location, String title, List<Guests> guests) {
         this.date = date;
         this.duration = duration;
         this.location = location;
@@ -63,11 +69,11 @@ public class Events {
         this.title = title;
     }
 
-    public List<Guest> getGuests() {
+    public List<Guests> getGuests() {
         return guests;
     }
 
-    public void setGuests(List<Guest> guests) {
+    public void setGuests(List<Guests> guests) {
         this.guests = guests;
     }
 
